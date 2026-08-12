@@ -1,8 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
-import userRouter from "./service/user.js";
-import postBludeRouter from "./service/post-blude.js";
-import bludeDonerRouter from "./service/blude-doner.js";
+import userRouter from "./service/user";
+import postBludeRouter from "./service/post-blude";
+import bludeDonerRouter from "./service/blude-doner";
 dotenv.config();
 
 const app = express();

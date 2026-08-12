@@ -1,9 +1,14 @@
-import express from 'express';
-import prisma from '../lib/prisma.js';
-const router = express.Router();
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const prisma_1 = __importDefault(require("../lib/prisma"));
+const router = express_1.default.Router();
 router.get('/blude', async (req, res) => {
     try {
-        const bludePosts = await prisma.bludePost.findMany({
+        const bludePosts = await prisma_1.default.bludePost.findMany({
             orderBy: { createdAt: 'desc' },
         });
         return res.json({
@@ -26,7 +31,7 @@ router.post('/blude', async (req, res) => {
                 message: 'Title and description are required',
             });
         }
-        const bludePost = await prisma.bludePost.create({
+        const bludePost = await prisma_1.default.bludePost.create({
             data: {
                 title,
                 description,
@@ -53,4 +58,4 @@ router.post('/blude', async (req, res) => {
         return res.status(500).json({ success: false, message: 'Failed to create blude post' });
     }
 });
-export default router;
+exports.default = router;

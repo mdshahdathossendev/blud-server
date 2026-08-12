@@ -1,10 +1,8 @@
-import 'dotenv/config';
-import { PrismaClient } from '../../generated/prisma/client.js';
-import { PrismaPg } from '@prisma/adapter-pg';
-const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:Shahdat22@localhost:8080/blude_web';
-const adapter = new PrismaPg({ connectionString });
-const prisma = new PrismaClient({
-    adapter,
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+require("dotenv/config");
+const client_1 = require("@prisma/client");
+const prisma = new client_1.PrismaClient({
     log: ['error', 'warn'],
 });
-export default prisma;
+exports.default = prisma;
