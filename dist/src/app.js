@@ -1,20 +1,15 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const dotenv_1 = __importDefault(require("dotenv"));
-const user_1 = __importDefault(require("./service/user"));
-const post_blude_1 = __importDefault(require("./service/post-blude"));
-const blude_doner_1 = __importDefault(require("./service/blude-doner"));
-dotenv_1.default.config();
-const app = (0, express_1.default)();
-app.use(express_1.default.json());
-app.use(user_1.default);
-app.use(post_blude_1.default);
-app.use(blude_doner_1.default);
+import express from "express";
+import dotenv from "dotenv";
+import userRouter from "./service/user";
+import postBludeRouter from "./service/post-blude";
+import bludeDonerRouter from "./service/blude-doner";
+dotenv.config();
+const app = express();
+app.use(express.json());
+app.use(userRouter);
+app.use(postBludeRouter);
+app.use(bludeDonerRouter);
 app.get("/", (req, res) => {
     res.send({ message: "Hello World!" });
 });
-exports.default = app;
+export default app;

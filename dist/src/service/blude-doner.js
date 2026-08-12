@@ -1,14 +1,9 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const prisma_1 = __importDefault(require("../lib/prisma"));
-const router = express_1.default.Router();
+import express from 'express';
+import prisma from '../lib/prisma';
+const router = express.Router();
 router.get('/blude-doner', async (req, res) => {
     try {
-        const donorPosts = await prisma_1.default.donorPost.findMany({
+        const donorPosts = await prisma.donorPost.findMany({
             orderBy: { createdAt: 'desc' },
         });
         res.json({
@@ -34,7 +29,7 @@ router.post('/blude-doner', async (req, res) => {
                 message: 'Title and description are required',
             });
         }
-        const donorPost = await prisma_1.default.donorPost.create({
+        const donorPost = await prisma.donorPost.create({
             data: {
                 title,
                 description,
@@ -60,4 +55,4 @@ router.post('/blude-doner', async (req, res) => {
         });
     }
 });
-exports.default = router;
+export default router;
